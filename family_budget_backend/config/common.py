@@ -14,8 +14,13 @@ INSTALLED_APPS = (
 
 
     # Third party apps
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
+    'drf_yasg',
     'rest_framework',            # utilities for rest apis
     'rest_framework.authtoken',  # token authentication
+    'dj_rest_auth',
 
     # Your apps
     'family_budget_backend.users',
@@ -172,3 +177,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+ACCOUNT_EMAIL_VERIFICATION = None
