@@ -5,7 +5,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family-budget-backend.config.local')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_budget_backend.config.local')
 
     try:
         from django.core.management import execute_from_command_line

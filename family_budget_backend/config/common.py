@@ -18,7 +18,8 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',  # token authentication
 
     # Your apps
-    'family-budget-backend.users',
+    'family_budget_backend.users',
+    'family_budget_backend.budgets'
 
 )
 
@@ -34,9 +35,9 @@ MIDDLEWARE = (
 )
 
 ALLOWED_HOSTS = ['*']
-ROOT_URLCONF = 'family-budget-backend.urls'
+ROOT_URLCONF = 'family_budget_backend.urls'
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', default='secret')
-WSGI_APPLICATION = 'family-budget-backend.wsgi.application'
+WSGI_APPLICATION = 'family_budget_backend.wsgi.application'
 
 ADMINS = (
     ('Author', 'mklose12@gmail.com'),

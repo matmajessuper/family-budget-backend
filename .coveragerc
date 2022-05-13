@@ -5,6 +5,6 @@ omit = *migrations*,
        *test*,
        *admin*,
        ./manage.py,
-       ./family-budget-backend/config/*,
-       ./family-budget-backend/wsgi.py,
+       ./family_budget_backend/config/*,
+       ./family_budget_backend/wsgi.py,
        *__init__*

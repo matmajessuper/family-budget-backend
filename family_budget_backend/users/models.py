@@ -7,8 +7,17 @@ from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
 
 
-class User(AbstractUser):
+class CreatedUpdated(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    class Meta:
+        abstract = True
+        ordering = ('-created',)
+
+
+class User(AbstractUser, CreatedUpdated):
 
     def __str__(self):
         return self.username
