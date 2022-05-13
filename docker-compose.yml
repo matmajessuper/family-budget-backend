@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:11.6
+    environment:
+      POSTGRES_USER: family-budget
+      POSTGRES_PASSWORD: postgres
+  web:
+    restart: always
+    environment:
+      - DJANGO_SECRET_KEY=local
+    build: ./
+    command: >
+      bash -c "./manage.py migrate &&
+               gunicorn --bind 0.0.0.0:8000 family-budget-backend.wsgi:application"
+    volumes:
+      - ./:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres

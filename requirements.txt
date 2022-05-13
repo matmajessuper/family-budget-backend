@@ -1,0 +1,16 @@
+# Core
+Django==4.0.4
+gunicorn==20.1.0
+
+# For the persistence stores
+psycopg2-binary==2.9.3
+
+# Rest apis
+djangorestframework==3.13.1
+
+# Developer Tools
+flake8==4.0.1
+
+# Testing
+mock==4.0.3
+factory-boy==3.2.1
