@@ -13,16 +13,34 @@ class Budget(CreatedUpdated):
         blank=True,
         related_name='owned'
     )
-    viewer = models.ManyToManyField('users.User', related_name='shared')
-    category = models.ManyToManyField('Category', related_name='budgets')
-    expenses = ArrayField(ArrayField(
-        models.CharField(max_length=50),
-        size=2
-    ))
-    incomes = ArrayField(ArrayField(
-        models.CharField(max_length=50),
-        size=2
-    ))
+    viewers = models.ManyToManyField(
+        'users.User',
+        related_name='shared',
+        null=True,
+        blank=True
+    )
+    category = models.ManyToManyField(
+        'Category',
+        related_name='budgets',
+        null=True,
+        blank=True
+    )
+    expenses = ArrayField(
+        ArrayField(
+            models.CharField(max_length=50),
+            size=2
+        ),
+        null=True,
+        blank=True
+    )
+    incomes = ArrayField(
+        ArrayField(
+            models.CharField(max_length=50),
+            size=2
+        ),
+        null=True,
+        blank=True
+    )
 
     class Meta(CreatedUpdated.Meta):
         unique_together = ('owner', 'title')
