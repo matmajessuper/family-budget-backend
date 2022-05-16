@@ -103,6 +103,17 @@ class TestBudgetTestCase(APITestCase):
         budget.refresh_from_db()
         self.assertEqual(str(budget.viewers.first().id), other_user.id)
 
+    def test_pagination(self):
+        for _ in range(20):
+            BudgetFactory(owner=self.user)
+        url = reverse('budgets-list')
+        self.client.force_authenticate(self.user)
+        response = self.client.get(url)
+        self.assertEqual(response.data.get('count'), 20)
+        self.assertEqual(len(response.data.get('results')), 10)
+        next_page = response.data.get('next')
+        response = self.client.get(next_page)
+        self.assertEqual(len(response.data.get('results')), 10)
 
 class TestCategoryTestCase(APITestCase):
     def setUp(self) -> None:
