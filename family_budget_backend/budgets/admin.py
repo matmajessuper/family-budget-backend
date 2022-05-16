@@ -9,9 +9,13 @@ class TransactionAdmin(CreatedUpdatedAdmin):
     pass
 
 
+class TransactionInline(admin.TabularInline):
+    model = Transaction
+
+
 @admin.register(Budget)
 class BudgetAdmin(CreatedUpdatedAdmin):
-    pass
+    inlines = (TransactionInline,)
 
 
 @admin.register(Category)

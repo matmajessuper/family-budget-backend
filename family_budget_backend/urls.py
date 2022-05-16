@@ -8,11 +8,13 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
 from family_budget_backend.budgets.views import BudgetsViewSet, CategoriesViewSet, TransactionsViewSet
+from family_budget_backend.users.views import UsersViewSet
 
 router = SimpleRouter()
 router.register('budgets', BudgetsViewSet, basename='budgets')
 router.register('categories', CategoriesViewSet, basename='categories')
 router.register('transactions', TransactionsViewSet, basename='transactions')
+router.register('users', UsersViewSet, basename='users')
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -22,7 +24,6 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=[permissions.AllowAny],
 )
-
 
 
 def _static_butler(request, path, **kwargs):

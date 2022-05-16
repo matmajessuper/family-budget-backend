@@ -115,6 +115,17 @@ class TestBudgetTestCase(APITestCase):
         response = self.client.get(next_page)
         self.assertEqual(len(response.data.get('results')), 10)
 
+    def test_balance(self):
+        budget = BudgetFactory(owner=self.user)
+        t1 = TransactionFactory(budget=budget)
+        t2 = TransactionFactory(budget=budget)
+        t3 = TransactionFactory(budget=budget)
+        url = reverse('budgets-list')
+        self.client.force_authenticate(self.user)
+        response = self.client.get(url)
+        balance = sum([t1.amount, t2.amount, t3.amount])
+        self.assertEqual(response.data.get('results')[0].get('balance'), balance)
+
 class TestCategoryTestCase(APITestCase):
     def setUp(self) -> None:
         self.user = UserFactory()

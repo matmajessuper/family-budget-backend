@@ -38,7 +38,6 @@ class Budget(CreatedUpdated):
     viewers = models.ManyToManyField(
         'users.User',
         related_name='shared',
-        null=True,
         blank=True
     )
 

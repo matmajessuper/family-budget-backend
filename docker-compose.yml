@@ -1,17 +1,25 @@
 version: '3'
+
+volumes:
+  local_postgres_data: {}
+
 services:
   postgres:
     image: postgres:11.6
     environment:
       POSTGRES_USER: family-budget
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+
   web:
     restart: always
     environment:
       - DJANGO_SECRET_KEY=local
     build: ./
     command: >
-      bash -c "./manage.py migrate &&
+      bash -c "python wait_for_postgres.py &&
+               ./manage.py migrate &&
                gunicorn --bind 0.0.0.0:8000 family_budget_backend.wsgi:application"
     volumes:
       - ./:/code

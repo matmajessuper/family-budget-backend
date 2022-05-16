@@ -20,3 +20,13 @@ Run a command inside the docker container:
 ```bash
 docker-compose run --rm web [command]
 ```
+
+Dump database data
+```bash
+docker-compose exec postgres pg_dump -U family-budget family-budget > dump_data.dump
+```
+
+Load database data dump
+```bash
+docker-compose exec -T postgres psql -U family-budget family-budget < [directory to dump]/dump_data.dump
+```
