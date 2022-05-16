@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',  # token authentication
     'dj_rest_auth',
     'corsheaders',
+    'django_filters',
 
     # Your apps
     'family_budget_backend.users',
